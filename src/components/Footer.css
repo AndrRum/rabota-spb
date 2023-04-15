@@ -1,0 +1,80 @@
+.Footer {
+    background-color: rgb(42, 42, 42);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+}
+
+.Info  {
+    color: antiquewhite;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+    margin-top: 12px;
+    word-break: break-all;
+}
+
+.Logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 12px;
+    margin-top: -8px;
+}
+
+.Telegram-container {
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    border-radius: 100%;
+    margin-right: 8px;
+}
+
+.Telegram-logo {
+    margin-top: 3px;
+   margin-left: 3px;
+}
+
+.Telegram-logo:hover {
+    color: #0088cc;
+    transition: all 0.3s ease;
+}
+
+.Href-style {
+    color: rgb(48, 48, 48);
+}
+
+.Vk-container {
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+.Vk-logo:hover {
+    color: #0077FF;
+    transition: all 0.3s ease;
+}
+
+@media only screen and (max-height: 525px) {
+    .Info {
+        display: none;
+    }
+    .Footer {
+        height: 70px;
+    }
+    .Telegram-container {
+        margin-top: 30px;
+    }
+    .Vk-container {
+        margin-top: 30px;
+    }
+}

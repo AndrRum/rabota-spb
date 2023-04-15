@@ -1,0 +1,40 @@
+.Carousel {
+    background-color: #007558;
+    max-height: 150px;
+}
+
+.ImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.Img {
+    max-height: 150px;
+    max-width: 150px;
+}
+
+.Img2 {
+    height: 150px;
+    width: 100%;
+}
+
+@media only screen and (max-height: 525px) {
+    .Img {
+        max-height: 70px;
+        max-width: 70px;
+    }
+
+    .Carousel {
+        height: 70px;
+    }
+
+    .Img2 {
+        height: 70px;
+    }
+}
+
+@media only screen and (min-width: 725px) {
+    .Img2 {
+        width: 65%;
+    }
+}
