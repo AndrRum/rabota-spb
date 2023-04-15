@@ -6,9 +6,7 @@ export const vkApi = createApi({
     baseQuery: fetchBaseQuery(
         {
             baseUrl,
-            mode: "cors",
             method: "GET",
-            credentials: "same-origin",
         }),
     endpoints: (builder) => ({
         getWall: (builder.query({
@@ -22,4 +20,4 @@ export const vkApi = createApi({
     }),
 })
 
-export const {useGetTokenQuery, useLazyGetWallQuery} = vkApi;
+export const {useLazyGetWallQuery, useLazySearchQuery} = vkApi;
