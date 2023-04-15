@@ -17,7 +17,6 @@ export const WallPostElement = memo(({post}) => {
     const postText = post?.text
     const historyText = history?.text
     const text = postText || historyText
-    const isLongText = text?.length > 550;
 
     const date = dayjs(post.date * 1000).format("DD.MM HH:mm");
 
