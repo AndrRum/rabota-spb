@@ -38,7 +38,7 @@ img {
     right: 0;
     width: 70%;
     height: 1.2em;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #ECE9E6);
     pointer-events: none;
 }
 

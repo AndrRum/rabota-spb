@@ -78,3 +78,18 @@
         margin-top: 30px;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .Info {
+        display: none;
+    }
+    .Footer {
+        height: 70px;
+    }
+    .Telegram-container {
+        margin-top: 30px;
+    }
+    .Vk-container {
+        margin-top: 30px;
+    }
+}

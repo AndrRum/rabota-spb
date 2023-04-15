@@ -1,0 +1,27 @@
+.no-res-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.no-res-img{
+    min-width: 100px;
+    min-height: 100px;
+    color: #007558;
+}
+.no-res-lbl {
+    color: #007558;
+}
+
+@media only screen and (max-height: 625px) {
+    .no-res-container{
+        padding-top: 0;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .no-res-container{
+        padding-top: 150px;
+    }
+}

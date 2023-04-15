@@ -1,0 +1,30 @@
+.page_404{
+    background:#fff;
+    font-family: serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page_404  img{ width:100%;}
+
+
+.four_zero_four_bg{
+    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+}
+
+.link_404{
+    color: #fff!important;
+    padding: 10px 20px;
+    background: #007558;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-color: transparent;
+}
+.link_404:active {
+    content: "";
+    opacity: 0.8;
+}
+.contant_box_404{ margin-top:-20px; margin-left: 30px}

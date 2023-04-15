@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
 import "./Main.css"
-import {charCode} from "../../helpers/charCode";
 import {SearchInputContainer} from "./children/SearchInputContainer";
 import {Header} from "../../components/Header";
 import {Footer} from "../../components/Footer";
@@ -10,6 +9,8 @@ import {WallPostElement} from "./children/WallPostElement";
 import {useLazyGetWallQuery, useLazySearchQuery} from "../../redux/vkApi";
 import {Loader} from "../../components/Loader";
 import {useDebounce} from "../../useDebounce";
+import {Error} from "../error/Error";
+import {EmptyResult} from "../emptyResult/EmptyResult";
 
 export const Main = () => {
     const navigate = useNavigate();
@@ -42,38 +43,44 @@ export const Main = () => {
         setSearchValue(event.target.value)
     }
 
-    const handleKeypress = (e) => {
-        if (e.charCode === charCode.enter) {
-            setSearchValue("");
-            e.target.blur();
-        }
-    }
-
     const renderItem = wall?.response?.items?.map((el, index) => {
-            return (<React.Fragment key={index + el.from_id}><WallPostElement post={el}/></React.Fragment>)
+            return (
+                <React.Fragment key={index + el.from_id}>
+                    <WallPostElement post={el}/>
+                </React.Fragment>)
         }
     );
+
+    console.log(wallData)
 
     return (
         <div className="Main">
             <Header/>
-            <div className={"Input-button-container"}>
-                <SearchInputContainer
-                    searchValue={searchValue}
-                    searchInputHandler={searchInputHandler}
-                    handleKeypress={handleKeypress}
-                />
-                <NavigateButton
-                    navigateToPrice={navigateToPrice}
-                    title={"Рекламодателям"}
-                />
-            </div>
-            <div className={"container"}>
-                {wallData.status === "pending" || searchData.status === "pending"
-                    ? <Loader/>
-                    : <>{renderItem}</>}
-            </div>
-            <Footer/>
+            {wallData.isError || wallData.isUninitialized
+                ? <Error onPress={() => getWall({count: 100, offset})}/> :
+                <>
+                    <div className={"Input-button-container"}>
+                        <SearchInputContainer
+                            searchValue={searchValue}
+                            searchInputHandler={searchInputHandler}
+                        />
+                        <NavigateButton
+                            navigateToPrice={navigateToPrice}
+                            title={"Рекламодателям"}
+                        />
+                    </div>
+                    <div className={"container"}>
+                        {wallData.status === "fulfilled"
+                            && searchData.status === "fulfilled"
+                            && !wall?.response?.items?.length && <EmptyResult/>}
+                        {wallData.status === "pending"
+                        || searchData.status === "pending"
+                            ? <Loader/>
+                            : <>{renderItem}</>}
+                    </div>
+                    <Footer/>
+                </>
+            }
         </div>
     )
 }

@@ -15,19 +15,16 @@ export const Header = () => {
             duration={2000}
         >
             {
-                [0, 1].map((item, i) => <Item key={item} item={item}/>)
+                [0, 1].map((item, i) => <Item key={item} />)
             }
         </Carousel>
     )
 }
 
-function Item(props) {
+function Item() {
     return (
         <div className={"ImgContainer"}>
-            {props.item === 0
-                ? <img src={require("../resources/logo.jpeg")} alt="logo" className={"Img"}/>
-                : <img src={require("../resources/logo2.jpeg")} alt="logo2" className={"Img2"}/>
-            }
+            <img src={require("../resources/logo.jpeg")} alt="logo" className={"Img"}/>
         </div>
 
     )

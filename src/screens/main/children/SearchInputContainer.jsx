@@ -3,7 +3,7 @@ import "./SearchInputContainer.css"
 import SearchIcon from '@mui/icons-material/Search';
 
 export const SearchInputContainer = (props) => {
-    const {searchValue, searchInputHandler, handleKeypress} = props;
+    const {searchValue, searchInputHandler} = props;
     return (
         <div className="search-box">
             <button className="btn-search">
@@ -15,7 +15,6 @@ export const SearchInputContainer = (props) => {
                 placeholder="Поиск..."
                 value={searchValue}
                 onChange={searchInputHandler}
-                onKeyPress={handleKeypress}
             />
         </div>
     )
