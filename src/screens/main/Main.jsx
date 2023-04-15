@@ -34,9 +34,6 @@ export const Main = () => {
         } else setWall(wallData?.data);
     }, [debounced.length, searchData?.data, wallData?.data])
 
-    console.log("wwwwwwwwwwwwwwwww", wall)
-    console.log("sssssssssss", wallData.status, searchData.status);
-
     const navigateToPrice = useCallback(() => {
         navigate("/price")
     }, [navigate])
