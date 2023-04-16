@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
 import "./Main.css"
 import {SearchInputContainer} from "./children/SearchInputContainer";
@@ -18,17 +18,32 @@ export const Main = () => {
 
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
-    const [wall, setWall] = useState([])
-    const listInnerRef = useRef();
+    const [wall, setWall] = useState()
 
     const debounced = useDebounce(searchValue);
     const [getWall, wallData] = useLazyGetWallQuery();
     const [search, searchData] = useLazySearchQuery();
 
+    const handleScroll = useCallback(() => {
+        const paginationCondition =
+            (window.innerHeight + document.documentElement.scrollTop - document.body.offsetHeight) > 0;
+        if (paginationCondition && debounced.length <= 3) {
+            setOffset(prevState => prevState + 100);
+            if (debounced.length > 0) {
+                getWall({count: 100, offset})
+            }
+        }
+    }, [debounced.length, offset]);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [handleScroll]);
+
     useEffect(() => {
         if (debounced.length > 3) {
             search({query: debounced, count: 100})
-        } else if (!debounced) getWall({count: 20, offset})
+        } else if (!debounced) getWall({count: 100, offset})
     }, [debounced, offset])
 
     useEffect(() => {
@@ -45,16 +60,6 @@ export const Main = () => {
         setSearchValue(event.target.value)
     }
 
-    const [scrollTop, setScrollTop] = useState(0);
-
-    const handleScroll = (event) => {
-        console.log("e", event)
-        setScrollTop(event.currentTarget.scrollTop);
-    };
-
-    console.log(scrollTop)
-
-
     const renderItem = wall?.response?.items?.map((el, index) => {
             return (
                 <React.Fragment key={index + el.from_id}>
@@ -63,13 +68,11 @@ export const Main = () => {
         }
     );
 
-    // console.log(wallData)
-
     return (
         <div className="Main">
             <Header/>
             {wallData.isError || wallData.isUninitialized
-                ? <Error onPress={() => getWall({count: 100, offset})}/> :
+                ? <Error onPress={() => getWall({count: 100, offset: 0})}/> :
                 <>
                     <div className={"Input-button-container"}>
                         <SearchInputContainer

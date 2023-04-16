@@ -2,7 +2,6 @@
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 70vh, 70vw;
 }
 
 .container {
@@ -12,7 +11,6 @@
     margin-block: 2rem;
     gap: 2rem;
     padding-bottom: 120px;
-    height: 100%;
 }
 
 .Input-button-container {
