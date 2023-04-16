@@ -33,7 +33,10 @@ export const WallPostElement = memo(({post}) => {
 
     return (
         <div className="card">
-            <img src={photoUrl || videoImgUrl || "https://source.unsplash.com/600x400/?work"}
+            <img src={photoUrl
+                || videoImgUrl
+                || require("../../../resources/logo.jpeg")
+            }
                  alt="card__image"
                  className="card__image"
                  width="600"
