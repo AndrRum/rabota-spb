@@ -17,9 +17,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-top: 12px;
     padding-right: 12px;
     padding-left: 12px;
+}
+
+.arr-back {
+    color: #007558;
 }
 
 @media only screen and (min-width: 725px) {
