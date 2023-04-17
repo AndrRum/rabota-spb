@@ -16,7 +16,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Main = () => {
     const navigate = useNavigate();
-    const offsetAndCountInt = 20;
+    const offsetAndCountInt = 100;
 
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
