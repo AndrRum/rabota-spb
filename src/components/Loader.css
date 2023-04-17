@@ -7,17 +7,17 @@
     --duration: 3000ms;
 
     /* generate some colors */
-    --color-01: #004D00;
-    --color-02: #005500;
-    --color-03: #005E00;
-    --color-04: #006800;
-    --color-05: #007300;
-    --color-06: #008000;
-    --color-07: #008D00;
-    --color-08: #009B00;
-    --color-09: #00AB00;
-    --color-10: #00BC00;
-    --color-11: #6dea7d;
+    --color-01: #054234;
+    --color-02: #094837;
+    --color-03: #085240;
+    --color-04: #0a5d4a;
+    --color-05: #0e6550;
+    --color-06: #117055;
+    --color-07: #0d775d;
+    --color-08: #0f886b;
+    --color-09: #139f7e;
+    --color-10: #18b28d;
+    --color-11: #1dd7ab;
     --color-crayon: rgb(8, 28, 7);
 
     /* build some backgrounds */
