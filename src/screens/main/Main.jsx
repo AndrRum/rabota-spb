@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate} from "react-router";
 import "./Main.css"
 import {SearchInputContainer} from "./children/SearchInputContainer";
 import {Header} from "../../components/Header";
@@ -15,15 +14,13 @@ import {ScrollToTop} from "./children/ScrollToTopButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const Main = () => {
-    const navigate = useNavigate();
-    const offsetAndCountInt = 100;
+    const offsetAndCountInt = 20;
 
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
     const [wall, setWall] = useState();
-    const [showPrevPage, setShowPrevPage] = useState(true);
 
-    const debounced = useDebounce(searchValue);
+    const debounced = useDebounce(searchValue.trim());
     const [getWall, wallData] = useLazyGetWallQuery();
     const [search, searchData] = useLazySearchQuery();
 
@@ -53,10 +50,6 @@ export const Main = () => {
         } else setWall(wallData?.data);
     }, [debounced.length, searchData?.data, wallData?.data])
 
-    const navigateToPrice = useCallback(() => {
-        navigate("/price")
-    }, [navigate])
-
     const searchInputHandler = (event) => {
         setSearchValue(event.target.value)
     }
@@ -83,12 +76,11 @@ export const Main = () => {
                         <SearchInputContainer
                             searchValue={searchValue}
                             searchInputHandler={searchInputHandler}
-                            onFocus={() => setShowPrevPage(false)}
-                            onBlur={() => setShowPrevPage(true)}
                         />
-                        {showPrevPage && offset > 0 && <ArrowBackIcon onClick={getPreviewPage} className={"arr-back"}/>}
+                        {offset > 0
+                            && debounced.length <= 3
+                            && <ArrowBackIcon onClick={getPreviewPage} className={"arr-back"}/>}
                         <NavigateButton
-                            navigateToPrice={navigateToPrice}
                             title={"Рекламодателям"}
                         />
                     </div>

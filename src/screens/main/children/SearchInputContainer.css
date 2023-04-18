@@ -68,7 +68,7 @@
 
 @media only screen and (min-width: 625px) {
     .btn-search:hover ~ .input-search {
-        width: 280px;
+        width: 50vw;
     }
 
     .input-search:hover {
@@ -78,7 +78,7 @@
 
 @media only screen and (max-width: 450px) {
     .btn-search:hover ~ .input-search {
-        width: 180px;
+        width: 40vw;
     }
 
     .input-search {
