@@ -8,13 +8,14 @@
     height: 110px;
 }
 
-.Info  {
+.Info {
     color: antiquewhite;
     padding-left: 8px;
     padding-right: 8px;
     text-align: center;
     margin-top: 12px;
     word-break: break-all;
+    font-size: 14px;
 }
 
 .Logo-container {
@@ -37,7 +38,9 @@
 
 .Telegram-logo {
     margin-top: 3px;
-   margin-left: 3px;
+    margin-left: 3px;
+    width: 24px;
+    height: 24px;
 }
 
 .Telegram-logo:hover {
@@ -59,6 +62,11 @@
     border-radius: 100%;
 }
 
+.Vk-logo {
+    width: 24px;
+    height: 24px;
+}
+
 .Vk-logo:hover {
     color: #0077FF;
     transition: all 0.3s ease;
@@ -68,28 +76,57 @@
     .Info {
         display: none;
     }
+
     .Footer {
         height: 70px;
     }
+
     .Telegram-container {
         margin-top: 30px;
     }
+
     .Vk-container {
         margin-top: 30px;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
     .Info {
-        display: none;
+        font-size: 8px;
+        margin-top: 6px;
     }
+
     .Footer {
         height: 70px;
     }
+
     .Telegram-container {
-        margin-top: 30px;
+        margin-top: 8px;
+        width: 20px;
+        height: 20px;
     }
+
     .Vk-container {
-        margin-top: 30px;
+        margin-top: 8px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .Vk-logo {
+        width: 18px;
+        height: 18px;
+    }
+
+    .Telegram-container {
+        margin-top: 8px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .Telegram-logo {
+        width: 18px;
+        height: 18px;
+        margin-top: 3px;
+        margin-left: -1px;
     }
 }

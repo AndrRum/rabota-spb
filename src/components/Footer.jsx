@@ -10,9 +10,9 @@ export const Footer = () => {
     return (
         <div className={"Footer"}>
             <p className={"Info"}>
-                © Все права защищены. "Работа СПб", {date} гг.
+                © Все права защищены. "Работа СПБ в Санкт-Петербурге", {date} гг.
                 <br/>
-                И.п. Ольга Афонская.
+                ИП Афонская О.И.
             </p>
             <div className={"Logo-container"}>
                 <div
@@ -23,7 +23,7 @@ export const Footer = () => {
                         className={"Href-style"}
                         rel="noreferrer"
                         href={Domains.telegram}>
-                        <TelegramIcon className={"Telegram-logo"} width={24} height={24}/>
+                        <TelegramIcon className={"Telegram-logo"}/>
                     </a>
                 </div>
                 <div
@@ -34,7 +34,7 @@ export const Footer = () => {
                         className={"Href-style"}
                         rel="noreferrer"
                         href={Domains.vk}>
-                        <Icon24LogoVk className={"Vk-logo"} width={24} height={24}/>
+                        <Icon24LogoVk className={"Vk-logo"}/>
                     </a>
                 </div>
             </div>

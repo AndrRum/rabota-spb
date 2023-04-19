@@ -1,5 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {baseUrl, Domains, requiredParams} from "../helpers/domains";
+import {Domains, requiredParams} from "../helpers/domains";
+
+const baseUrl = "https://api.vk.com/method";
 
 export const vkApi = createApi({
     reducerPath: "vkApi",

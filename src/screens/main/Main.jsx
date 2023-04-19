@@ -69,7 +69,7 @@ export const Main = () => {
     return (
         <div className="Main">
             <Header/>
-            {wallData.isError || wallData.isUninitialized
+            {wallData.isError
                 ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0})}/> :
                 <>
                     <div className={"Input-button-container"}>
