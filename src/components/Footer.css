@@ -126,7 +126,6 @@
     .Telegram-logo {
         width: 18px;
         height: 18px;
-        margin-top: 3px;
-        margin-left: -1px;
+        margin-left: -1.5px;
     }
 }
