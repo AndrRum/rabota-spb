@@ -1,31 +1,26 @@
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router";
 import "./Splash.css"
+import {Domains} from "../../helpers/domains";
+import {useDispatch, useSelector} from "react-redux";
+import {getAccessToken} from "../../redux/auth/authThunk";
 
 export const Splash = () => {
     const navigate = useNavigate();
-    // const token = useSelector(state => state.auth.accessToken);
+    const dispatch = useDispatch();
 
-    const test = async () => {
-        const response = await fetch('http://localhost:5000/login/vk', {
-            mode: "cors"
-        });
-        console.log(response.json())
-        const body = await response.json();
-
-        if (response.status !== 200) {
-            throw Error(body.message)
-        }
-        return body;
-    }
+    const token = useSelector(state => state.auth.accessToken.access_token);
+    const currentPage = window.location;
 
     useEffect(() => {
-        // dispatch(getAccessToken())
-        // setTimeout(() => navigate("/home", {replace: true}), 2500);
-        // window.location.replace(Domains.authUrl)
-        //  test().then(r => console.log(r))
-        test().then(r => console.log(r))
-    }, [navigate])
+        if (token) {
+            setTimeout(() => navigate("/home", {replace: true}), 2500);
+        } else {
+            currentPage.search
+                ? dispatch(getAccessToken(currentPage.search.substring(6)))
+                : currentPage.replace(Domains.authUrl)
+        }
+    }, [dispatch, navigate, token])
 
     return (
         <div className="Splash">

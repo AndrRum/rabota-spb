@@ -26,21 +26,21 @@ exports.callApi = async (
         );
 
         if (!result) {
-            return {};
+            return "Something went wrong";
         }
 
         if (result.status === 400) {
             const errMessage = result.error.message;
             if (errMessage) {
                 console.error(errMessage);
-                return {};
+                return errMessage;
             }
-            return {};
+            return errMessage;
         }
         return result.data;
     } catch (error) {
         console.error('fetch api error', error);
-        return {};
+        return error;
     }
 };
 

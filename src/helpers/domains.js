@@ -5,8 +5,3 @@ export const Domains = {
     price: "https://vk.com/@spbrabota-razmestit-vakansiu",
     authUrl: `https://oauth.vk.com/authorize?client_id=${process.env.REACT_APP_VK_CLIENT_ID}&display=page&redirect_uri=${process.env.REACT_APP_VK_REDIRECT_URI}&scope=wall&response_type=code&v=${process.env.REACT_APP_VK_V}`
 }
-
-export const ACCESS_TOKEN = "";
-export const requiredParams = `&access_token=${ACCESS_TOKEN}&v=${process.env.REACT_APP_VK_V}`
-
-//https://rabotaspb.online

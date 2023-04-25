@@ -12,9 +12,11 @@ import {Error} from "../error/Error";
 import {EmptyResult} from "../emptyResult/EmptyResult";
 import {ScrollToTop} from "./children/ScrollToTopButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {useSelector} from "react-redux";
 
 export const Main = () => {
-    const offsetAndCountInt = 20;
+    const offsetAndCountInt = 100;
+    const token = useSelector(state => state.auth.accessToken.access_token);
 
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
@@ -29,9 +31,9 @@ export const Main = () => {
             (window.innerHeight + document.documentElement.scrollTop - document.body.offsetHeight) > 0;
         if (paginationCondition && debounced.length <= 3 && wallData.status !== "pending") {
             setOffset(prevState => prevState + offsetAndCountInt);
-            getWall({count: offsetAndCountInt, offset})
+            getWall({count: offsetAndCountInt, offset, token})
         }
-    }, [debounced.length, getWall, offset, wallData.status]);
+    }, [debounced.length, getWall, offset, token, wallData.status]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
@@ -40,9 +42,9 @@ export const Main = () => {
 
     useEffect(() => {
         if (debounced.length > 3) {
-            search({query: debounced, count: offsetAndCountInt})
-        } else if (!debounced) getWall({count: offsetAndCountInt, offset})
-    }, [debounced, offset])
+            search({query: debounced, count: offsetAndCountInt, token})
+        } else if (!debounced) getWall({count: offsetAndCountInt, offset, token})
+    }, [debounced, offset, token])
 
     useEffect(() => {
         if (debounced.length > 3) {
@@ -70,7 +72,7 @@ export const Main = () => {
         <div className="Main">
             <Header/>
             {wallData.isError
-                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0})}/> :
+                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token})}/> :
                 <>
                     <div className={"Input-button-container"}>
                         <SearchInputContainer
