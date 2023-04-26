@@ -13,10 +13,14 @@ import {EmptyResult} from "../emptyResult/EmptyResult";
 import {ScrollToTop} from "./children/ScrollToTopButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
 export const Main = () => {
+    const navigate = useNavigate();
     const offsetAndCountInt = 100;
-    const token = useSelector(state => state.auth.accessToken.access_token);
+    const token = useSelector(state => state.auth.accessToken);
+
+    console.warn(token)
 
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
@@ -31,7 +35,7 @@ export const Main = () => {
             (window.innerHeight + document.documentElement.scrollTop - document.body.offsetHeight) > 0;
         if (paginationCondition && debounced.length <= 3 && wallData.status !== "pending") {
             setOffset(prevState => prevState + offsetAndCountInt);
-            getWall({count: offsetAndCountInt, offset, token})
+            getWall({count: offsetAndCountInt, offset, token: token.access_token})
         }
     }, [debounced.length, getWall, offset, token, wallData.status]);
 
@@ -41,9 +45,15 @@ export const Main = () => {
     }, [handleScroll]);
 
     useEffect(() => {
+        if (!token || token?.error) {
+             // navigate("/", {replace: true})
+        }
+    }, [navigate, token])
+
+    useEffect(() => {
         if (debounced.length > 3) {
-            search({query: debounced, count: offsetAndCountInt, token})
-        } else if (!debounced) getWall({count: offsetAndCountInt, offset, token})
+            search({query: debounced, count: offsetAndCountInt, token: token.access_token})
+        } else if (!debounced) getWall({count: offsetAndCountInt, offset, token: token.access_token})
     }, [debounced, offset, token])
 
     useEffect(() => {
@@ -72,7 +82,7 @@ export const Main = () => {
         <div className="Main">
             <Header/>
             {wallData.isError
-                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token})}/> :
+                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token: token.access_token})}/> :
                 <>
                     <div className={"Input-button-container"}>
                         <SearchInputContainer

@@ -1,14 +1,39 @@
-import {configureStore} from "@reduxjs/toolkit";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {setupListeners} from "@reduxjs/toolkit/query";
 import {vkApi} from "./vkApi";
 import {authReducer} from "./auth/authSlice";
+import {persistReducer, persistStore} from 'redux-persist';
+import {createLogger} from "redux-logger";
+import storage from 'redux-persist/lib/storage';
+
+const rootReducer = combineReducers({
+    [vkApi.reducerPath]: vkApi.reducer,
+    auth: authReducer
+})
+
+const options = {
+    diff: true,
+    collapsed: true,
+};
+
+const logger = createLogger(options);
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    version: 1,
+    timeout: 2000,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-    reducer: {
-        [vkApi.reducerPath]: vkApi.reducer,
-        auth: authReducer
-    },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(vkApi.middleware),
+    reducer: persistReducer(persistConfig, persistedReducer),
+    middleware: getDefaultMiddleware => getDefaultMiddleware({
+        serializableCheck: false
+    }).concat(vkApi.middleware).concat(logger),
 })
+
+export const persistor = persistStore(store);
 
 setupListeners(store.dispatch)

@@ -12,6 +12,8 @@ export const Splash = () => {
     const token = useSelector(state => state.auth.accessToken.access_token);
     const currentPage = window.location;
 
+    console.log(currentPage.search.substring(6))
+
     useEffect(() => {
         if (token) {
             setTimeout(() => navigate("/home", {replace: true}), 2500);
