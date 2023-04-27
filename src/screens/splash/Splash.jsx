@@ -21,6 +21,7 @@ export const Splash = () => {
             currentPage.search
                 ? dispatch(getAccessToken(currentPage.search.substring(6)))
                 : currentPage.replace(Domains.authUrl)
+
         }
     }, [dispatch, navigate, token])
 
