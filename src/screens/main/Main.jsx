@@ -20,8 +20,6 @@ export const Main = () => {
     const offsetAndCountInt = 100;
     const token = useSelector(state => state.auth.accessToken);
 
-    console.warn(token)
-
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
     const [wall, setWall] = useState();
@@ -46,7 +44,7 @@ export const Main = () => {
 
     useEffect(() => {
         if (!token || token?.error) {
-             // navigate("/", {replace: true})
+             navigate("/", {replace: true})
         }
     }, [navigate, token])
 

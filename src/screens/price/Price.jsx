@@ -17,7 +17,7 @@ export const Price = () => {
             <Header/>
             <div className={"Button"}>
                 <NavigateButton
-                    navigateToPrice={goBackHandler}
+                    onClick={goBackHandler}
                     title={"На главную"}
                 />
             </div>

@@ -49,8 +49,7 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 40vh;
 
 }
 

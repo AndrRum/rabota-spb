@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.+) https://api.vk.com/method/$1 [P]
