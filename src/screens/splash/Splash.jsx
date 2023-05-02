@@ -9,7 +9,7 @@ export const Splash = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const token = useSelector(state => state.auth.accessToken.access_token);
+    const token = useSelector(state => state.auth.accessToken);
     const currentPage = window.location;
 
     useEffect(() => {

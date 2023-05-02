@@ -12,12 +12,15 @@ import {Error} from "../error/Error";
 import {EmptyResult} from "../emptyResult/EmptyResult";
 import {ScrollToTop} from "./children/ScrollToTopButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
+import {clearToken} from "../../redux/auth/authSlice";
 
 export const Main = () => {
     const navigate = useNavigate();
     const offsetAndCountInt = 100;
+    const dispatch = useDispatch();
+
     const token = useSelector(state => state.auth.accessToken);
 
     const [searchValue, setSearchValue] = useState("");
@@ -33,7 +36,7 @@ export const Main = () => {
             (window.innerHeight + document.documentElement.scrollTop - document.body.offsetHeight) > 0;
         if (paginationCondition && debounced.length <= 3 && wallData.status !== "pending") {
             setOffset(prevState => prevState + offsetAndCountInt);
-            getWall({count: offsetAndCountInt, offset, token: token.access_token})
+            getWall({count: offsetAndCountInt, offset, token: token?.access_token})
         }
     }, [debounced.length, getWall, offset, token, wallData.status]);
 
@@ -43,15 +46,9 @@ export const Main = () => {
     }, [handleScroll]);
 
     useEffect(() => {
-        if (!token || token?.error) {
-             navigate("/", {replace: true})
-        }
-    }, [navigate, token])
-
-    useEffect(() => {
         if (debounced.length > 3) {
-            search({query: debounced, count: offsetAndCountInt, token: token.access_token})
-        } else if (!debounced) getWall({count: offsetAndCountInt, offset, token: token.access_token})
+            search({query: debounced, count: offsetAndCountInt, token: token?.access_token})
+        } else if (!debounced) getWall({count: offsetAndCountInt, offset, token: token?.access_token})
     }, [debounced, offset, token])
 
     useEffect(() => {
@@ -59,6 +56,13 @@ export const Main = () => {
             setWall(searchData?.data)
         } else setWall(wallData?.data);
     }, [debounced.length, searchData?.data, wallData?.data])
+
+    useEffect(() => {
+        if (!token || token?.error || wall?.error?.error_code === 5) {
+            dispatch(clearToken())
+            navigate("/", {replace: true})
+        }
+    }, [dispatch, navigate, token, wall?.error?.error_code])
 
     const searchInputHandler = (event) => {
         setSearchValue(event.target.value)
@@ -80,7 +84,7 @@ export const Main = () => {
         <div className="Main">
             <Header/>
             {wallData.isError
-                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token: token.access_token})}/> :
+                ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token: token?.access_token})}/> :
                 <>
                     <div className={"Input-button-container"}>
                         <SearchInputContainer

@@ -16,6 +16,11 @@ const authInitialState = {
 const authSlice = createSlice({
     name: "auth",
     initialState: authInitialState,
+    reducers: {
+        clearToken: state => {
+            state.accessToken = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAccessToken.pending, getTokenPending)
@@ -47,3 +52,5 @@ const getTokenRejected = (state) => {
 }
 
 export const {reducer: authReducer} = authSlice
+
+export const {clearToken} = authSlice.actions
