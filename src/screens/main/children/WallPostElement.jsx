@@ -11,7 +11,7 @@ export const WallPostElement = memo(({post}) => {
     const history = post?.copy_history && post?.copy_history[0];
 
     const photoUrl = post?.attachments?.length
-        && (post?.attachments[0]?.photo?.sizes?.find(e => e.type === "y")?.url
+        && (post?.attachments[0]?.photo?.sizes?.find(e => e.type === "y" || e.type === "r" || e.type === "x")?.url
             || (history?.attachments[0]?.photo?.sizes?.at(-1).url))
     const videoImgUrl = post?.attachments?.length
         && (history?.attachments[0]?.video?.image?.at(-1)?.url)
