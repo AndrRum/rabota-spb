@@ -13,7 +13,7 @@ export const Splash = () => {
     const currentPage = window.location;
 
     useEffect(() => {
-        if (token) {
+        if (token?.access_token) {
             setTimeout(() => navigate("/home", {replace: true}), 2500);
         } else {
             currentPage.search
@@ -21,7 +21,7 @@ export const Splash = () => {
                 : currentPage.replace(Domains.authUrl)
 
         }
-    }, [dispatch, navigate, token])
+    }, [currentPage, dispatch, navigate, token])
 
     return (
         <div className="Splash">

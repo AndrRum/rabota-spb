@@ -12,8 +12,7 @@ $query = http_build_query([
     "redirect_uri" => $redirect_uri,
     "code" => $_GET['code'] ?? ""
 ]);
-// echo 'https://oauth.vk.com/access_token?' . $query;
-// exit;
+
 curl_setopt_array($curl, array(
   CURLOPT_URL => 'https://oauth.vk.com/access_token?' . $query,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
