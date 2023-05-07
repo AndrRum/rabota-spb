@@ -1,9 +1,4 @@
-.Price {
-    /*background-image: url("../../resources/price.svg");*/
-    /*background-attachment: fixed;*/
-    /*background-position: center;*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: 50vh, 50vw;*/
+.Payment {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -40,7 +35,7 @@
 }
 
 @media only screen and (min-width: 725px) {
-    .Price {
+    .Payment {
         background-size: 0;
     }
     .Container {

@@ -30,6 +30,16 @@
     height: 70px;
 }
 
+.drawer {
+    background-color: #0d775d;
+    position: absolute;
+    right: 12px;
+}
+
+.drawer_btn {
+    color: #007558;
+}
+
 @media only screen and (min-width: 725px) {
     .Main {
         background-size: 0;

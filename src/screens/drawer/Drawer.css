@@ -1,0 +1,19 @@
+.buttonColor {
+    color: #0d775d;
+}
+
+.conditions {
+  border: none;
+    position: absolute;
+    bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 16px;
+}
+
+.title_conditions {
+    color: black;
+    font-size: 12px;
+    padding-left: 8px;
+}

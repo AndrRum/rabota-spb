@@ -3,7 +3,6 @@ import "./Main.css"
 import {SearchInputContainer} from "./children/SearchInputContainer";
 import {Header} from "../../components/Header";
 import {Footer} from "../../components/Footer";
-import {NavigateButton} from "../../components/NavigateButton";
 import {WallPostElement} from "./children/WallPostElement";
 import {useLazyGetWallQuery, useLazySearchQuery} from "../../redux/vkApi";
 import {Loader} from "../../components/Loader";
@@ -15,6 +14,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import {clearToken} from "../../redux/auth/authSlice";
+import {DrawerComponent} from "../drawer/Drawer";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import {Domains} from "../../helpers/domains";
 
 export const Main = () => {
     const navigate = useNavigate();
@@ -26,6 +29,7 @@ export const Main = () => {
     const [searchValue, setSearchValue] = useState("");
     const [offset, setOffset] = useState(0);
     const [wall, setWall] = useState();
+    const [open, setOpen] = useState(false);
 
     const debounced = useDebounce(searchValue.trim());
     const [getWall, wallData] = useLazyGetWallQuery();
@@ -70,6 +74,23 @@ export const Main = () => {
 
     const getPreviewPage = () => {
         setOffset(prevState => prevState - offsetAndCountInt);
+    }
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
+    const onClickDrawerItemHandler = (index) => {
+        if (index % 2 === 0) {
+            window.open(Domains.Payment, '_blank', 'noreferrer')
+        } else {
+            navigate("/Payment")
+        }
+        handleDrawerClose()
     }
 
     const renderItem = wall?.response?.items?.map((el, index) => {
@@ -118,8 +139,18 @@ export const Main = () => {
                         {offset > 0
                             && debounced.length <= 3
                             && <ArrowBackIcon onClick={getPreviewPage} className={"arr-back"}/>}
-                        <NavigateButton
-                            title={"Рекламодателям"}
+                        <IconButton
+                            onClick={handleDrawerOpen}
+                            className={"drawer"}
+                            style={{position: "absolute", right: 12}}
+                            sx={{...(open && {display: 'none'})}}
+                        >
+                            <MenuIcon className={"drawer_btn"}/>
+                        </IconButton>
+                        <DrawerComponent
+                            open={open}
+                            handleDrawerClose={handleDrawerClose}
+                            onClick={onClickDrawerItemHandler}
                         />
                     </div>
                     <div className={"container"}>
