@@ -1,7 +1,6 @@
 import React, {memo} from "react";
 import "./WallPostElement.css"
-import {Icon20LikeCircleFillRed, Icon20ViewCircleFillRed} from '@vkontakte/icons';
-import {Icon20AdvertisingCircleFillRed} from '@vkontakte/icons';
+import {Icon20AdvertisingCircleFillRed, Icon20LikeCircleFillRed, Icon20ViewCircleFillRed} from '@vkontakte/icons';
 import {Domains} from "../../../helpers/domains";
 import dayjs from "dayjs";
 

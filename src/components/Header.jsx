@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from 'react-material-ui-carousel'
 import "./Header.css"
 
-export const Header = () => {
+export const Header = ({onClick}) => {
     return (
         <Carousel
             className={"Carousel"}
@@ -15,15 +15,15 @@ export const Header = () => {
             duration={2000}
         >
             {
-                [0, 1].map((item, i) => <Item key={item} />)
+                [0, 1].map((item, i) => <Item key={item} onClick={onClick}/>)
             }
         </Carousel>
     )
 }
 
-function Item() {
+function Item({onClick}) {
     return (
-        <div className={"ImgContainer"}>
+        <div className={"ImgContainer"} onClick={onClick}>
             <img src={require("../resources/logo.jpeg")} alt="logo" className={"Img"}/>
         </div>
 

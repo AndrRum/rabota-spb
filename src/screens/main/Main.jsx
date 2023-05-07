@@ -18,7 +18,7 @@ import {clearToken} from "../../redux/auth/authSlice";
 
 export const Main = () => {
     const navigate = useNavigate();
-    const offsetAndCountInt = 100;
+    const offsetAndCountInt = 20;
     const dispatch = useDispatch();
 
     const token = useSelector(state => state.auth.accessToken);
@@ -49,7 +49,7 @@ export const Main = () => {
         if (debounced.length > 3) {
             search({query: debounced, count: offsetAndCountInt, token: token?.access_token})
         } else if (!debounced) getWall({count: offsetAndCountInt, offset, token: token?.access_token})
-    }, [debounced, offset, token])
+    }, [debounced, getWall, offset, search, token])
 
     useEffect(() => {
         if (debounced.length > 3) {
@@ -80,9 +80,33 @@ export const Main = () => {
         }
     );
 
+    const renderContent = () => {
+        return searchValue.length > 0
+            ? renderHelper(searchData.status)
+            : renderHelper(wallData.status)
+    }
+
+    const renderHelper = (status) => {
+        if (isFulfilled(status)) {
+            return !wall?.response?.items?.length
+                ? <EmptyResult/>
+                : <>{renderItem}</>
+        } else if (isPending(status)) {
+            return <Loader/>
+        }
+    }
+
+    const isFulfilled = (status) => {
+        return status === "fulfilled";
+    }
+
+    const isPending = (status) => {
+        return status === "pending";
+    }
+
     return (
         <div className="Main">
-            <Header/>
+            <Header onClick={() => setSearchValue("")}/>
             {wallData.isError
                 ? <Error onPress={() => getWall({count: offsetAndCountInt, offset: 0, token: token?.access_token})}/> :
                 <>
@@ -99,15 +123,10 @@ export const Main = () => {
                         />
                     </div>
                     <div className={"container"}>
-                        {wallData.status === "fulfilled"
-                            && searchData.status === "fulfilled"
-                            && !wall?.response?.items?.length && <EmptyResult/>}
-                        {wallData.status === "pending"
-                        || searchData.status === "pending"
-                            ? <Loader/>
-                            : <>{renderItem}</>}
+                        {renderContent()}
                     </div>
                     <ScrollToTop/>
+                    <div className={"empty"}/>
                     <Footer/>
                 </>
             }
