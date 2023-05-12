@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {memo} from 'react';
 import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,8 +15,6 @@ import ListItemText from '@mui/material/ListItemText';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import "./Drawer.css";
-import {memo} from "react";
-import {Domains} from "../../helpers/domains";
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
 const drawerWidth = 240;
@@ -65,20 +64,18 @@ export const DrawerComponent = memo((props) => {
                                         ? <CampaignIcon className={"buttonColor"}/>
                                         : <PaymentsIcon className={"buttonColor"}/>}
                                 </ListItemIcon>
-                                <ListItemText primary={text} />
+                                <ListItemText primary={text}/>
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
-                <a href={Domains.Payment} target={"_blank"} rel="noopener noreferrer">
-                    <button
-                        onClick={onClick}
-                        className={"conditions"}
-                    >
-                        <HandshakeIcon className={"buttonColor"} fontSize={"small"}/>
-                        <p className={"title_conditions"}>Пользовательское соглашение</p>
-                    </button>
-                </a>
+                <button
+                    onClick={() => onClick(-1)}
+                    className={"conditions"}
+                >
+                    <HandshakeIcon className={"buttonColor"} fontSize={"small"}/>
+                    <p className={"title_conditions"}>Пользовательское соглашение</p>
+                </button>
             </Drawer>
         </Box>
     );

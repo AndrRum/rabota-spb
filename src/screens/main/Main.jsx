@@ -87,8 +87,10 @@ export const Main = () => {
     const onClickDrawerItemHandler = (index) => {
         if (index % 2 === 0) {
             window.open(Domains.Payment, '_blank', 'noreferrer')
+        } else if (index === -1) {
+            navigate("/policy")
         } else {
-            navigate("/Payment")
+            navigate("/payment")
         }
         handleDrawerClose()
     }
