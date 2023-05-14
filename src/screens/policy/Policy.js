@@ -14,7 +14,7 @@ export const Policy = () => {
     }
 
     return (
-        <div className="Payment">
+        <div>
             <Header/>
             <div className={"Button"}>
                 <NavigateButton
