@@ -22,12 +22,8 @@
     padding-left: 12px;
 }
 
-.arr-back {
-    color: #007558;
-}
-
 .empty {
-    height: 70px;
+    height: 120px;
 }
 
 .drawer {
@@ -38,6 +34,28 @@
 
 .drawer_btn {
     color: #007558;
+}
+
+.paginationButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.pagBut {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-style: none;
+    color: #0d775d;
+}
+
+.pagBut:hover {
+    opacity: 0.9;
+}
+
+.pagBut:active {
+    opacity: 0.7;
 }
 
 @media only screen and (min-width: 725px) {

@@ -2,12 +2,14 @@
 
 $domain = "spbrabota";
 $v = "5.131";
+$filter = "owner";
 
 $curl = curl_init();
 $query = http_build_query([
     "domain" => $domain,
     "offset" => $_GET['offset'] ?? "",
     "count" => $_GET['count'] ?? "",
+    "filter" => $filter,
     "access_token" => $_GET['access_token'] ?? "",
     "v" => $v,
 ]);

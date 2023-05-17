@@ -4,8 +4,6 @@ import {Icon20AdvertisingCircleFillRed, Icon20LikeCircleFillRed, Icon20ViewCircl
 import {Domains} from "../../../helpers/domains";
 import dayjs from "dayjs";
 
-const URL_REGEX = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
-
 export const WallPostElement = memo(({post}) => {
     const history = post?.copy_history && post?.copy_history[0];
 
@@ -21,13 +19,14 @@ export const WallPostElement = memo(({post}) => {
 
     const date = dayjs(post.date * 1000).format("DD.MM HH:mm");
 
-    const renderTextWithLinks = () => {
+    const renderText = () => {
         return text && text.split(" ")
-            .map((part, index) =>
-                URL_REGEX.test(part) ?
-                    <a href={part} target="_blank"
-                       key={part + index} rel="noreferrer">{part}</a> : part + " "
-            );
+            .map((part, index) => {
+                if (part.includes("http" || "https" || "com" || "ru" || "vk")) {
+                    return <a href={part} target="_blank"
+                              key={part + index} rel="noreferrer">{part + " "}</a>
+                } else return <span key={part + index}>{part + " "}</span>
+            })
     }
 
     return (
@@ -42,7 +41,7 @@ export const WallPostElement = memo(({post}) => {
                  height="250"
             />
             <div className="card__body">
-                <p className={"text"}>{renderTextWithLinks()}</p>
+                <p className={"text"}>{renderText()}</p>
             </div>
             <div className="card__footer">
                 <div>
