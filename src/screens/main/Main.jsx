@@ -22,7 +22,7 @@ import {Domains} from "../../helpers/domains";
 
 export const Main = () => {
     const navigate = useNavigate();
-    const offsetAndCountInt = 20;
+    const offsetAndCountInt = 40;
     const dispatch = useDispatch();
 
     const token = useSelector(state => state.auth.accessToken);
@@ -41,7 +41,6 @@ export const Main = () => {
         if (debounced.length > 3) {
             search({query: debounced, count: offsetAndCountInt, token: token?.access_token})
         } else if (!debounced) {
-            console.log("off", offset, wallData.status)
             dispatch(vkApi.util.resetApiState())
             getWall({count: offsetAndCountInt, offset, token: token?.access_token})
         }

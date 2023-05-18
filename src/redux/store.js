@@ -5,9 +5,11 @@ import {authReducer} from "./auth/authSlice";
 import {persistReducer, persistStore} from 'redux-persist';
 import {createLogger} from "redux-logger";
 import storage from 'redux-persist/lib/storage';
+import {paymentApi} from "./paymentApi";
 
 const rootReducer = combineReducers({
     [vkApi.reducerPath]: vkApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
     auth: authReducer
 })
 
@@ -31,7 +33,7 @@ export const store = configureStore({
     reducer: persistReducer(persistConfig, persistedReducer),
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false
-    }).concat(vkApi.middleware).concat(logger),
+    }).concat(vkApi.middleware).concat(paymentApi.middleware).concat(logger),
 })
 
 export const persistor = persistStore(store);
