@@ -93,10 +93,10 @@ export const Main = () => {
     );
 
     const renderContent = useCallback(() => {
-        return searchValue.length > 0
+        return debounced.length > 3
             ? renderHelper(searchData.status)
             : renderHelper(wallData.status)
-    }, [searchData.status, searchValue.length, wallData.status])
+    }, [searchData.status, debounced.length, wallData.status])
 
     const renderHelper = useCallback((status) => {
         if (isFulfilled(status)) {
@@ -146,7 +146,7 @@ export const Main = () => {
                         {renderContent()}
                     </div>
                     {!isPending(wallData.status)
-                        && debounced.length === 0
+                        && searchValue.length <= 3
                         && <div className={"paginationButtons"}>
                             <button className={"pagBut"} onClick={getPreviewPage}>
                                 {offset > 0 &&

@@ -10,8 +10,8 @@ export const SearchInputContainer = (props) => {
     }
 
     return (
-        <div className="search-box">
-            <button className="btn-search" onClick={onClick}>
+        <div className="search-box" onClick={onClick}>
+            <button className="btn-search">
                 <SearchIcon className={"search-icon"} />
             </button>
             <input
