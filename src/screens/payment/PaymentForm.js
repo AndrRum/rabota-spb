@@ -49,25 +49,25 @@ export const PaymentForm = () => {
     };
 
     return (
-        <div class="tinkoffPayWidget">
-            <form name="TinkoffPayForm" class="tinkoffPayForm" onSubmit={(e) => {
+        <div className="tinkoffPayWidget">
+            <form name="TinkoffPayForm" className="tinkoffPayForm" onSubmit={(e) => {
                 tinkoffPay(e.target)
                 e.preventDefault()
             }}>
-                <input class="tinkoffPayRow" type="hidden" name="terminalkey" value="1684231603937"/>
-                <input class="tinkoffPayRow" type="hidden" name="frame" value="false"/>
-                <input class="tinkoffPayRow" type="hidden" name="language" value="ru"/>
-                <input class="tinkoffPayRow" type="hidden" placeholder="Номер заказа" name="order"/>
-                <input class="tinkoffPayRow" type="text" placeholder="Сумма заказа" id="tinkoffAmount" name="amount"
+                <input className="tinkoffPayRow" type="hidden" name="terminalkey" value="1684231603937"/>
+                <input className="tinkoffPayRow" type="hidden" name="frame" value="false"/>
+                <input className="tinkoffPayRow" type="hidden" name="language" value="ru"/>
+                <input className="tinkoffPayRow" type="hidden" placeholder="Номер заказа" name="order"/>
+                <input className="tinkoffPayRow" type="text" placeholder="Сумма заказа" id="tinkoffAmount" name="amount"
                        value="" required/>
-                <input class="tinkoffPayRow" type="text" placeholder="Описание заказа" name="description" required/>
-                <input class="tinkoffPayRow" type="hidden" placeholder="ФИО" name="name"/>
-                <input class="tinkoffPayRow" type="text" placeholder="E-mail" id="tinkoffEmail" name="email"
+                <input className="tinkoffPayRow" type="text" placeholder="Описание заказа" name="description" required/>
+                <input className="tinkoffPayRow" type="hidden" placeholder="ФИО" name="name"/>
+                <input className="tinkoffPayRow" type="text" placeholder="E-mail" id="tinkoffEmail" name="email"
                        required/>
-                <input class="tinkoffPayRow" type="text" placeholder="Телефон" id="tinkoffPhone"
+                <input className="tinkoffPayRow" type="text" placeholder="Телефон" id="tinkoffPhone"
                        name="phone"/>
-                <input class="tinkoffPayRow" type="hidden" id="tinkoffReceipt" name="receipt" value=''/>
-                <input class="tinkoffPayRow payBtn" type="submit" value="Оплатить"/>
+                <input className="tinkoffPayRow" type="hidden" id="tinkoffReceipt" name="receipt" value=''/>
+                <input className="tinkoffPayRow payBtn" type="submit" value="Оплатить"/>
             </form>
         </div>
     )
