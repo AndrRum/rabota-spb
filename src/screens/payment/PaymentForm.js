@@ -1,7 +1,6 @@
 import React from 'react';
 
 const widget = `
-<body>
 <style>
     h3 {
         padding: 30px;
@@ -66,8 +65,6 @@ const widget = `
         background-color: #fcc521;
     }
 </style>
-<script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
-
 <div class="tinkoffPayWidget">
     <form name="TinkoffPayForm" class="tinkoffPayForm" onsubmit="tinkoffPay(this); return false">
         <input class="tinkoffPayRow" type="hidden" name="terminalkey" value="1684231603937">
@@ -84,37 +81,6 @@ const widget = `
         <input class="tinkoffPayRow payBtn" type="submit" value="Оплатить">
     </form>
 </div>
-<script type="text/javascript">
-    function tinkoffPay(form) {
-
-        let name = form.description.value, amount = form.amount.value * 100, email = form.email.value,
-            phone = form.phone.value;
-        let quantity = 1;
-        if (amount) {
-            form.receipt.value = JSON.stringify({
-                "Email": email,
-                "Phone": phone,
-                "EmailCompany": "test@tinkoff.ru",
-                "Taxation": "usn_income",
-                "Items": [
-                    {
-                        "Name": name,
-                        "Price": amount,
-                        "Quantity": quantity,
-                        "Amount": amount * quantity,
-                        "PaymentMethod": "full_payment",
-                        "PaymentObject": "service",
-                        "Tax": "none",
-                    }
-                ],
-            });
-            pay(form);
-        } else alert("Не все обязательные поля заполнены");
-        return false;
-    }
-</script>
-</body>
-</html>
 `
 
 export const PaymentForm = () => {

@@ -12,7 +12,38 @@
     <title>Работа СПб</title>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">
+    <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
+    <script type="text/javascript">
+        function tinkoffPay(form) {
+
+            let name = form.description.value, amount = form.amount.value * 100, email = form.email.value,
+                phone = form.phone.value;
+            let quantity = 1;
+            if (amount) {
+                form.receipt.value = JSON.stringify({
+                    "Email": email,
+                    "Phone": phone,
+                    "EmailCompany": "test@tinkoff.ru",
+                    "Taxation": "usn_income",
+                    "Items": [
+                        {
+                            "Name": name,
+                            "Price": amount,
+                            "Quantity": quantity,
+                            "Amount": amount * quantity,
+                            "PaymentMethod": "full_payment",
+                            "PaymentObject": "service",
+                            "Tax": "none",
+                        }
+                    ],
+                });
+                pay(form);
+            } else alert("Не все обязательные поля заполнены");
+            return false;
+        }
+    </script>
+</div>
 <script type="text/javascript">
     VK.init({
         apiId: 51604244
