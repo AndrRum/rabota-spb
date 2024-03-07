@@ -26,6 +26,10 @@ const widget = `
         border-radius: 5px;
         display: flex;
         flex-direction: column;
+        
+        @media (max-height: 525px) {
+            padding: 0;
+        }
     }
 
     .tinkoffPayRow {
@@ -42,6 +46,10 @@ const widget = `
         resize: none;
         color: rgba(0, 0, 0, 0.664);
         font-size: 15px;
+        
+        @media (max-height: 525px) {
+           margin: 1px;
+        }
     }
 
     .tinkoffPayRow:focus {
@@ -85,6 +93,6 @@ const widget = `
 
 export const PaymentForm = () => {
     return (
-        <div dangerouslySetInnerHTML={{ __html: widget }}></div>
+        <div dangerouslySetInnerHTML={{ __html: widget }} />
     )
 }

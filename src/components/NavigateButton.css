@@ -59,10 +59,10 @@
     }
 }
 
-@media only screen and (max-width: 750px) {
+@media (max-width: 750px) or (max-height: 450px) {
     .button {
         height: 30px;
-        width: 160px;
+        width: 180px;
     }
     .button:after {
         height: 30px;

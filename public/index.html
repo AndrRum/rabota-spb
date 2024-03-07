@@ -16,9 +16,15 @@
     <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
     <script type="text/javascript">
         function tinkoffPay(form) {
+            const name = form.description.value.trim()
+            const amount = +(form.amount.value.replace(/\D/g, ""))
+            const email = form.email.value.trim()
+            const phone = form.phone.value.trim()
 
-            let name = form.description.value, amount = form.amount.value * 100, email = form.email.value,
-                phone = form.phone.value;
+            form.amount.value = String(amount)
+            form.email.value = email
+            form.phone.value = phone
+
             let quantity = 1;
             if (amount) {
                 form.receipt.value = JSON.stringify({
@@ -29,9 +35,9 @@
                     "Items": [
                         {
                             "Name": name,
-                            "Price": amount,
+                            "Price": amount * 100,
                             "Quantity": quantity,
-                            "Amount": amount * quantity,
+                            "Amount": amount * 100 * quantity,
                             "PaymentMethod": "full_payment",
                             "PaymentObject": "service",
                             "Tax": "none",
@@ -39,7 +45,7 @@
                     ],
                 });
                 pay(form);
-            } else alert("Не все обязательные поля заполнены");
+            } else alert("Не все обязательные поля заполнены либо заполнены неверно");
             return false;
         }
     </script>

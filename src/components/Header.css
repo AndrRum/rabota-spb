@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-@media only screen and (max-height: 525px) {
+@media only screen and (max-height: 650px) {
     .Img {
         max-height: 70px;
         max-width: 70px;
