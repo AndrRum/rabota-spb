@@ -35,7 +35,12 @@ export const Main = () => {
     const [getWall, wallData] = useLazyGetWallQuery();
     const [search, searchData] = useLazySearchQuery();
 
-    const data = useMemo(() => searchValue.length > 3 ? searchData.data : wallData.data, [searchData.data, searchValue.length, wallData.data])
+    const data = useMemo(() =>
+            searchValue.length > 3
+                ? searchData.data
+                : wallData.data,
+        [searchData.data, searchValue.length, wallData.data]
+    )
 
     useEffect(() => {
         if (debounced.length > 3) {
@@ -74,13 +79,22 @@ export const Main = () => {
     };
 
     const onClickDrawerItemHandler = (index) => {
-        if (index % 2 === 0) {
-            window.open(Domains.Payment, '_blank', 'noreferrer')
-        } else if (index === -1) {
-            navigate("/policy")
-        } else {
-            navigate("/payment")
+        switch (index) {
+            case 0:
+                window.open(Domains.Payment, '_blank', 'noreferrer')
+                break;
+            case 1:
+                navigate("/payment")
+                break;
+            case 2:
+                navigate("/offer_agreement")
+                break;
+            case 3:
+                navigate("/policy")
+                break;
+            default: return;
         }
+
         handleDrawerClose()
     }
 

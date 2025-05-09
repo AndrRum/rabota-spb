@@ -31,6 +31,8 @@ export const DrawerComponent = memo((props) => {
     const theme = useTheme();
     const {open, handleDrawerClose, onClick} = props
 
+    const navbarButtons = ['Рекламодателям', 'Оплата']
+
     return (
         <Box sx={{display: 'flex'}}>
             <Drawer
@@ -56,7 +58,7 @@ export const DrawerComponent = memo((props) => {
                 </DrawerHeader>
                 <Divider/>
                 <List>
-                    {['Рекламодателям', 'Оплата'].map((text, index) => (
+                    {navbarButtons.map((text, index) => (
                         <ListItem key={text} disablePadding>
                             <ListItemButton onClick={() => onClick(index)}>
                                 <ListItemIcon>
@@ -70,7 +72,14 @@ export const DrawerComponent = memo((props) => {
                     ))}
                 </List>
                 <button
-                    onClick={() => onClick(-1)}
+                    onClick={() => onClick(2)}
+                    className={"deal"}
+                >
+                    <HandshakeIcon className={"buttonColor"} fontSize={"small"}/>
+                    <p className={"title_deal"}>Договор-оферта</p>
+                </button>
+                <button
+                    onClick={() => onClick(3)}
                     className={"conditions"}
                 >
                     <HandshakeIcon className={"buttonColor"} fontSize={"small"}/>

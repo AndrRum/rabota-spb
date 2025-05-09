@@ -3,16 +3,29 @@
 }
 
 .conditions {
-  border: none;
+    border: none;
     position: absolute;
-    bottom: 12px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 300px;
     padding-left: 16px;
+    bottom: 12px;
 }
 
-.title_conditions {
+.deal {
+    border: none;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    padding-left: 16px;
+    bottom: 60px;
+}
+
+.title_conditions,
+.title_deal {
     color: black;
     font-size: 12px;
     padding-left: 8px;

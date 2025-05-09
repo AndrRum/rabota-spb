@@ -36,6 +36,15 @@
     height: 48px;
 }
 
+.consent-text a {
+    color: #0d775d;
+    text-decoration: underline;
+}
+
+.consent-text a:hover {
+    text-decoration: none;
+}
+
 @media only screen and (min-width: 725px) {
     .Payment {
         background-size: 0;
