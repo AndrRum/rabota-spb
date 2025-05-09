@@ -83,7 +83,7 @@ export const DrawerComponent = memo((props) => {
                     className={"conditions"}
                 >
                     <HandshakeIcon className={"buttonColor"} fontSize={"small"}/>
-                    <p className={"title_conditions"}>Пользовательское соглашение</p>
+                    <p className={"title_conditions"}>Политика конфиденциальности</p>
                 </button>
             </Drawer>
         </Box>
