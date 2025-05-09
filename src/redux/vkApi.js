@@ -1,25 +1,36 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {Domains} from "../helpers/domains";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Domains } from "../helpers/domains";
 
-const baseUrl = `${process.env.REACT_APP_SERVER_URL}/api/`;
+const BASE_URL = `${process.env.REACT_APP_SERVER_URL}/api/`;
+const VK_VERSION = process.env.REACT_APP_VK_V;
+const DOMAIN = Domains.subDomainVk;
+
+const buildVkQuery = (endpoint, params) => {
+    const queryParams = new URLSearchParams({
+        domain: DOMAIN,
+        access_token: params.token,
+        v: VK_VERSION,
+        ...params,
+    });
+
+    delete queryParams.token;
+
+    return `/${endpoint}?${queryParams.toString()}`;
+};
 
 export const vkApi = createApi({
     reducerPath: "vkApi",
-    baseQuery: fetchBaseQuery(
-        {
-            baseUrl,
-            method: "GET",
-        }),
+    baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
-        getWall: (builder.query({
-            query: (params) =>
-                `/wall?domain=${Domains.subDomainVk}&count=${params.count}&offset=${params.offset}&access_token=${params.token}&v=${process.env.REACT_APP_VK_V}`
-        })),
-        search: (builder.query({
-            query: (params) =>
-                `/search?domain=${Domains.subDomainVk}&query=${params.query}&count=${params.count}&access_token=${params.token}&v=${process.env.REACT_APP_VK_V}`
-        }))
+        getWall: builder.query({
+            query: ({ count, offset, token }) =>
+                buildVkQuery("wall", { count, offset, token }),
+        }),
+        search: builder.query({
+            query: ({ query, count, token }) =>
+                buildVkQuery("search", { query, count, token }),
+        }),
     }),
-})
+});
 
-export const {useLazyGetWallQuery, useLazySearchQuery} = vkApi;
+export const { useLazyGetWallQuery, useLazySearchQuery } = vkApi;

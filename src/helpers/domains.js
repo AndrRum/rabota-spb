@@ -1,7 +1,7 @@
 export const Domains = {
-    telegram: "https://t.me/SPBrabota_78",
-    vk: "https://vk.com/spbrabota",
-    subDomainVk: "spbrabota",
-    Payment: "https://vk.com/@spbrabota-razmestit-vakansiu",
-    authUrl: `https://oauth.vk.com/authorize?client_id=${process.env.REACT_APP_VK_CLIENT_ID}&display=page&redirect_uri=${process.env.REACT_APP_VK_REDIRECT_URI}&scope=wall&response_type=code&v=${process.env.REACT_APP_VK_V}`
-}
+    telegram: process.env.REACT_APP_URL_TELEGRAM,
+    vk: process.env.REACT_APP_URL_VK,
+    vkSubdomain: process.env.REACT_APP_VK_SUBDOMAIN,
+    payment: process.env.REACT_APP_URL_PAYMENT,
+    vkAuthUrl: `https://oauth.vk.com/authorize?client_id=${process.env.REACT_APP_VK_CLIENT_ID}&display=page&redirect_uri=${process.env.REACT_APP_VK_REDIRECT_URI}&scope=wall&response_type=code&v=${process.env.REACT_APP_VK_V}`,
+};
